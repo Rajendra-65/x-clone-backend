@@ -6,8 +6,18 @@ const app = express()
 
 app.listen(ENV.PORT, () => console.log("Server is up and running onn port 5001"))
 
-connectDB()
+app.get("/",(req,res) => res.send("Hello from Server"));
 
-app.get("/",(req,res) => res.send("Hello from Server"))
+const startServer = async () => {
+    try{
+        await connectDB();
+        
+    }catch(error) {
+        console.log("Failed to server connection",error.message);
+        process.exit[1]
+    }
+}
 
-app.use(json)
+startServer ();
+
+app.use(json);
